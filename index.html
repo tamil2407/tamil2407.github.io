@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamilvel Mugunthan S — EEE Engineer & Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────────── */
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --border:    #21262d;
+      --accent:    #7dcfff;     /* tokyonight cyan */
+      --green:     #9ece6a;
+      --purple:    #bb9af7;
+      --orange:    #ff9e64;
+      --red:       #f7768e;
+      --text:      #c9d1d9;
+      --muted:     #8b949e;
+      --heading:   #e6edf3;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Inter', sans-serif;
+    }
+
+    /* ── RESET ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { list-style: none; }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 2rem; height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .nav-logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-family: var(--mono);
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    section { max-width: 860px; margin: 0 auto; padding: 6rem 1.5rem 3rem; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    h2 {
+      font-family: var(--mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 2rem;
+      padding-bottom: .75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 56px;
+    }
+    .hero-inner { width: 100%; }
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--green);
+      border: 1px solid var(--green);
+      border-radius: 4px;
+      padding: .2rem .6rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-name {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1.15;
+      margin-bottom: .5rem;
+    }
+    .hero-name .accent { color: var(--accent); }
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title span { color: var(--purple); }
+    .hero-desc {
+      max-width: 560px;
+      color: var(--text);
+      margin-bottom: 2rem;
+      font-size: .95rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      font-family: var(--mono);
+      font-size: .82rem;
+      padding: .55rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0d1117;
+    }
+    .btn-primary:hover { background: #a9deff; text-decoration: none; color: #0d1117; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* stats strip */
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item { text-align: left; }
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--heading);
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: .75rem; color: var(--muted); }
+
+    /* ── ABOUT ───────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+    }
+    .about-card h3 {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--purple);
+      margin-bottom: .6rem;
+    }
+    .about-card p { font-size: .88rem; color: var(--text); }
+
+    /* ── EXPERIENCE ──────────────────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 1.25rem; }
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.25rem 1.5rem;
+      transition: border-left-color .2s;
+    }
+    .exp-card:hover { border-left-color: var(--purple); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .4rem; margin-bottom: .4rem; }
+    .exp-title {
+      font-family: var(--mono);
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--heading);
+    }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--orange);
+      white-space: nowrap;
+    }
+    .exp-company { font-size: .82rem; color: var(--accent); margin-bottom: .6rem; }
+    .exp-card ul { padding-left: 1rem; }
+    .exp-card ul li {
+      font-size: .84rem;
+      color: var(--muted);
+      list-style: disc;
+      margin-bottom: .25rem;
+    }
+
+    /* ── PROJECTS ────────────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex; flex-direction: column;
+      transition: border-color .2s, transform .2s;
+    }
+    .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .6rem; }
+    .proj-icon { font-size: 1.4rem; }
+    .proj-date { font-family: var(--mono); font-size: .7rem; color: var(--muted); }
+    .proj-name {
+      font-family: var(--mono);
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: .4rem;
+    }
+    .proj-desc { font-size: .82rem; color: var(--muted); flex: 1; margin-bottom: .75rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tag {
+      font-family: var(--mono);
+      font-size: .68rem;
+      padding: .15rem .45rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .tag.cyan { border-color: var(--accent); color: var(--accent); }
+    .tag.green { border-color: var(--green); color: var(--green); }
+    .tag.purple { border-color: var(--purple); color: var(--purple); }
+    .tag.orange { border-color: var(--orange); color: var(--orange); }
+
+    /* ── SKILLS ──────────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .skill-group h3 {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--green);
+      margin-bottom: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .skill-group .skill-list { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .skill-pill {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .2rem .5rem;
+    }
+
+    /* ── COMPETITIVE CODING ──────────────────────────────────── */
+    .coding-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .coding-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .coding-platform {
+      font-family: var(--mono);
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: .6rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .coding-platform .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .coding-card .stat-row {
+      display: flex; justify-content: space-between;
+      font-size: .8rem;
+      color: var(--muted);
+      padding: .2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .coding-card .stat-row:last-child { border-bottom: none; }
+    .coding-card .stat-row .val { color: var(--accent); font-family: var(--mono); font-weight: 600; }
+
+    /* ── CERTIFICATIONS ──────────────────────────────────────── */
+    .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .cert-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .9rem 1.1rem;
+      display: flex; align-items: flex-start; gap: .75rem;
+    }
+    .cert-icon { font-size: 1rem; margin-top: .1rem; flex-shrink: 0; }
+    .cert-name { font-size: .84rem; color: var(--heading); font-weight: 500; }
+    .cert-issuer { font-size: .75rem; color: var(--muted); font-family: var(--mono); }
+
+    /* ── ACHIEVEMENTS ────────────────────────────────────────── */
+    .achievements-list { display: flex; flex-direction: column; gap: .75rem; }
+    .ach-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 8px 8px 0;
+      padding: .9rem 1.2rem;
+      font-size: .88rem;
+      color: var(--text);
+    }
+    .ach-item strong { color: var(--orange); }
+
+    /* ── CONTACT ─────────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+    .contact-label { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-bottom: .25rem; }
+    .contact-val { font-size: .82rem; color: var(--accent); word-break: break-all; }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .about-grid, .certs-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">tamilvelmugunthan<span>.dev</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#coding">Coding</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚡ Open to Internships & Opportunities</div>
+    <div class="hero-name">Tamilvel <span class="accent">Mugunthan S</span></div>
+    <div class="hero-title">B.E. EEE @ KIT Coimbatore &nbsp;·&nbsp; <span>IoT · Embedded · AI</span></div>
+    <p class="hero-desc">
+      Second-year engineering student building at the intersection of hardware and software —
+      from ESP32-based IIoT systems to AI-powered predictive maintenance platforms.
+      IEEE Secretary. Hackathon winner. Competitive coder.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="mailto:kit28.24bee056@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">8.00<span> CGPA</span></div>
+        <div class="stat-label">Anna University</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">200<span>+</span></div>
+        <div class="stat-label">LeetCode Solved</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">650<span>+</span></div>
+        <div class="stat-label">CodeChef Problems</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1734</div>
+        <div class="stat-label">LeetCode Max Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1<span>st</span></div>
+        <div class="stat-label">SMARTATHON 2.0</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">// who I am</div>
+    <h2>About Me</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>🎓 Education</h3>
+        <p>B.E. Electrical & Electronics Engineering at KIT — Kalaignarkarunanidhi Institute of Technology, Coimbatore (2024–2028). Current CGPA: 8.00.</p>
+      </div>
+      <div class="about-card">
+        <h3>🔌 Focus Areas</h3>
+        <p>Embedded systems, IoT/IIoT, edge AI, PCB design, and full-stack dashboards for industrial applications. Bridging hardware and software.</p>
+      </div>
+      <div class="about-card">
+        <h3>🏛️ Campus Roles</h3>
+        <p>IEEE Secretary at KIT. Office bearer at IGEN Ensav Club. Active member of the Japanese Club. Event coordinator for Udhayam'25 and Udhayam'26.</p>
+      </div>
+      <div class="about-card">
+        <h3>🌍 Global Exposure</h3>
+        <p>Industry immersion at Odoo HQ, Dubai. Participated in AIESEC UAE × De Montfort University International Hackathon. RC car racing at TECHNOXIAN 9.0, New Delhi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">// where I've worked</div>
+    <h2>Experience</h2>
+    <div class="timeline">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Internship — Automotive Embedded Systems</div>
+          <div class="exp-date">May – Jun 2026</div>
+        </div>
+        <div class="exp-company">iQuants Engineering Solution Pvt Ltd · Onsite</div>
+        <ul>
+          <li>Gained practical knowledge in automotive ECU architecture and embedded systems.</li>
+          <li>Worked on real-time embedded applications in an industrial environment.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Industry Immersion — ERP & Digital Transformation</div>
+          <div class="exp-date">Jan 2026</div>
+        </div>
+        <div class="exp-company">Odoo Head Office · Dubai, UAE · Onsite</div>
+        <ul>
+          <li>Studied modular ERP architecture integrating Finance, CRM, Inventory, HR, and Operations.</li>
+          <li>Analyzed ERP implementation lifecycle: requirement analysis, customization, deployment, and user adoption.</li>
+          <li>Gained exposure to digital transformation strategies for startups and SMEs.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Industrial Training — PCB Design & Electronics</div>
+          <div class="exp-date">Dec 2025</div>
+        </div>
+        <div class="exp-company">Sunshiv Electronic Solutions · Coimbatore · Onsite</div>
+        <ul>
+          <li>Designed schematics and PCB layouts using Autodesk EAGLE.</li>
+          <li>Hands-on circuit analysis, assembly, and industrial electronics troubleshooting.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">TATA Micro Internship (Forage)</div>
+          <div class="exp-date">2025</div>
+        </div>
+        <div class="exp-company">TATA Group · Online</div>
+        <ul>
+          <li><strong style="color:var(--accent)">ESG Job Simulation:</strong> Analyzed client sustainability needs and built a structured fitment matrix aligned with corporate ESG goals.</li>
+          <li><strong style="color:var(--accent)">GenAI Data Analytics:</strong> Performed exploratory data analysis, risk profiling, and applied GenAI-driven insights for business decision-making.</li>
+          <li><strong style="color:var(--accent)">Cybersecurity Analyst:</strong> IAM fundamentals, strategy assessment, and secure platform integration.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">// what I've built</div>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">🏭</div><div class="proj-date">Feb 2026</div></div>
+        <div class="proj-name"><a href="https://tamil2407.github.io/boltin.ai/" target="_blank" style="color:var(--heading);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--heading)'">BoltOn.AI ↗</a></div>
+        <div class="proj-desc">Low-cost Industry 4.0 predictive maintenance system for SMEs. ESP32-S3 with vibration, current & IR temp sensors. Real-time &lt;200ms dashboard using React, MQTT & Socket.io. Reduces unplanned downtime by 30–35%.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">ESP32-S3</span><span class="tag green">TF Lite Micro</span><span class="tag purple">React.js</span><span class="tag orange">MQTT</span><span class="tag">IIoT</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">🔐</div><div class="proj-date">Mar 2026</div></div>
+        <div class="proj-name"><a href="https://github.com/tamil2407/secure-defence-network/releases/tag/v1.0.0" target="_blank" style="color:var(--heading);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--heading)'">Defence VPN Platform ↗</a></div>
+        <div class="proj-desc">HQ-controlled secure communication platform. Flutter + Firebase mobile app with email authentication, biometric login, and location services. Multi-step user registration with modern UI. 🏆 Won 1st at SMARTATHON 2.0.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">Flutter</span><span class="tag green">Firebase</span><span class="tag purple">Biometric Auth</span><span class="tag orange">Git/GitHub</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">♻️</div><div class="proj-date">Oct 2025</div></div>
+        <div class="proj-name">Smart Waste Segregation</div>
+        <div class="proj-desc">IoT-based automated waste classification using ESP8266. Real-time cloud monitoring for maintenance alerts. Achieved over 90% segregation accuracy.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">ESP8266</span><span class="tag green">IoT</span><span class="tag purple">Cloud</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">🍽️</div><div class="proj-date">Nov 2025</div></div>
+        <div class="proj-name"><a href="https://github.com/tamil2407/mealmate-7" target="_blank" style="color:var(--heading);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--heading)'">SmartServe AI ↗</a></div>
+        <div class="proj-desc">AI-powered food waste reduction system for college canteens. Demand prediction web app minimizing meal mismanagement. Built during a 36-hour hackathon at KIT.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">AI/ML</span><span class="tag green">Web Dev</span><span class="tag purple">Python</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">🔥</div><div class="proj-date">Nov 2025</div></div>
+        <div class="proj-name">LPG Gas Leakage Detector</div>
+        <div class="proj-desc">Arduino-based gas leakage detection using MQ-6 sensor with buzzer alert. Real-time concentration monitoring via Serial Monitor using SnO₂ sensing technology.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">Arduino</span><span class="tag green">MQ-6 Sensor</span><span class="tag purple">Embedded</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">🏎️</div><div class="proj-date">Jan 2026</div></div>
+        <div class="proj-name"><a href="https://tamil2407.github.io/FORMULA-1/" target="_blank" style="color:var(--heading);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--heading)'">Formula 1 Web Page ↗</a></div>
+        <div class="proj-desc">Responsive F1 informational website using HTML & CSS. Deployed on GitHub Pages with clean navigation and mobile-friendly layout.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">HTML/CSS</span><span class="tag green">GitHub Pages</span><span class="tag purple">Responsive</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">🚗</div><div class="proj-date">Sep 2025</div></div>
+        <div class="proj-name">RC Racing Car — TECHNOXIAN 9.0</div>
+        <div class="proj-desc">End-to-end design & fabrication of an RC racing car with a 10-member team. Reached the semifinal at the World Robotics Championship, New Delhi.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">Robotics</span><span class="tag green">Fabrication</span><span class="tag orange">New Delhi</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><div class="proj-icon">🤖</div><div class="proj-date">2025</div></div>
+        <div class="proj-name">E-Yantra Robotics — IIT Bombay</div>
+        <div class="proj-desc">Selected for eYRC 2025 national competition by IIT Bombay. Applied embedded systems, sensors, and algorithmic control in team-based robotics challenge.</div>
+        <div class="proj-tags">
+          <span class="tag cyan">Embedded</span><span class="tag green">Sensors</span><span class="tag purple">IIT Bombay</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">// tools & technologies</div>
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="skill-list">
+          <span class="skill-pill">C</span><span class="skill-pill">C++</span><span class="skill-pill">Python</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Embedded / Hardware</h3>
+        <div class="skill-list">
+          <span class="skill-pill">Arduino IDE</span><span class="skill-pill">ESP32</span><span class="skill-pill">ESP8266</span><span class="skill-pill">Autodesk EAGLE</span><span class="skill-pill">PCB Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>IoT / IIoT</h3>
+        <div class="skill-list">
+          <span class="skill-pill">MQTT</span><span class="skill-pill">Socket.io</span><span class="skill-pill">Cloud Monitoring</span><span class="skill-pill">Edge AI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Web & Backend</h3>
+        <div class="skill-list">
+          <span class="skill-pill">Node.js</span><span class="skill-pill">Express.js</span><span class="skill-pill">React.js</span><span class="skill-pill">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>AI / ML</h3>
+        <div class="skill-list">
+          <span class="skill-pill">Deep Learning</span><span class="skill-pill">TF Lite Micro</span><span class="skill-pill">Google AI Studio</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>DevOps & Tools</h3>
+        <div class="skill-list">
+          <span class="skill-pill">Git / GitHub</span><span class="skill-pill">Linux</span><span class="skill-pill">AWS Cloud</span><span class="skill-pill">PM2</span><span class="skill-pill">DSA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE CODING -->
+<section id="coding">
+  <div class="reveal">
+    <div class="section-label">// competitive programming</div>
+    <h2>Competitive Coding</h2>
+    <div class="coding-grid">
+
+      <div class="coding-card">
+        <div class="coding-platform">
+          <div class="dot" style="background:#f89f1b"></div> LeetCode
+        </div>
+        <div class="stat-row"><span>Max Rating</span><span class="val">1734</span></div>
+        <div class="stat-row"><span>Problems Solved</span><span class="val">200+</span></div>
+        <div class="stat-row"><span>Global Rank</span><span class="val">Top 12%</span></div>
+        <div class="stat-row"><span>Highest Rank</span><span class="val">#1069</span></div>
+        <div class="stat-row"><span>Badges</span><span class="val">4</span></div>
+      </div>
+
+      <div class="coding-card">
+        <div class="coding-platform">
+          <div class="dot" style="background:#7dcfff"></div> CodeChef
+        </div>
+        <div class="stat-row"><span>Max Rating</span><span class="val">1293</span></div>
+        <div class="stat-row"><span>DSA Rating</span><span class="val">1293</span></div>
+        <div class="stat-row"><span>Problems Solved</span><span class="val">650+</span></div>
+        <div class="stat-row"><span>Highest Rank</span><span class="val">#245</span></div>
+        <div class="stat-row"><span>Division</span><span class="val">Div 4</span></div>
+        <div class="stat-row"><span>Badges</span><span class="val">4</span></div>
+      </div>
+
+      <div class="coding-card">
+        <div class="coding-platform">
+          <div class="dot" style="background:#9ece6a"></div> Codeforces
+        </div>
+        <div class="stat-row"><span>Max Rating</span><span class="val">361</span></div>
+        <div class="stat-row"><span>Problems Solved</span><span class="val">1</span></div>
+        <div class="stat-row"><span>Highest Rank</span><span class="val">#2872</span></div>
+        <div class="stat-row"><span>Round</span><span class="val">1107 Div 3</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="reveal">
+    <div class="section-label">// credentials</div>
+    <h2>Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-item"><div class="cert-icon">🧠</div><div><div class="cert-name">Deep Learning & AI</div><div class="cert-issuer">CodeChef · 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🐍</div><div><div class="cert-name">Python Foundation</div><div class="cert-issuer">Infosys Springboard · 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🤖</div><div><div class="cert-name">Artificial Intelligence Primer</div><div class="cert-issuer">Infosys Springboard · 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">📊</div><div><div class="cert-name">Masterclass in AI & Data Science</div><div class="cert-issuer">Zayed University, UAE · 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">☁️</div><div><div class="cert-name">AWS Academy — Cloud Foundations</div><div class="cert-issuer">Amazon Web Services · 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">☕</div><div><div class="cert-name">Learn Spring Boot (Back-end)</div><div class="cert-issuer">CodeChef · 2026</div></div></div>
+      <div class="cert-item"><div class="cert-icon">⚙️</div><div><div class="cert-name">Exploring C</div><div class="cert-issuer">University of Michigan · 2025</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🐧</div><div><div class="cert-name">Command Line in Linux</div><div class="cert-issuer">Coursera · 2025</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🔬</div><div><div class="cert-name">Sensor Circuit Design</div><div class="cert-issuer">University of Colorado Boulder · 2025</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="reveal">
+    <div class="section-label">// wins & recognition</div>
+    <h2>Achievements</h2>
+    <div class="achievements-list">
+      <div class="ach-item">🏆 <strong>1st Place — SMARTATHON 2.0</strong> (Blockchain & Cyber Security domain) for developing an HQ-Controlled Secure Communication Platform over Enforced Defence VPN.</div>
+      <div class="ach-item">🇮🇳 <strong>Smart India Hackathon 2025</strong> — Selected in the Inter College Hackathon for Problem ID: SIH25085.</div>
+      <div class="ach-item">🌍 <strong>International Hackathon</strong> — AIESEC UAE × De Montfort University: Collaborated in a multicultural team to pitch innovative solutions to real-world challenges.</div>
+      <div class="ach-item">⏱️ <strong>36-Hour Hackathon</strong> — Built and presented "SmartServe" at KIT within 36 hours.</div>
+      <div class="ach-item">🤖 <strong>TECHNOXIAN 9.0</strong> — Reached the semifinal at World Robotics Championship RC Car Racing, New Delhi.</div>
+      <div class="ach-item">🔬 <strong>E-Yantra Robotics Competition 2025</strong> — Selected for IIT Bombay's national robotics challenge.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">// reach out</div>
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="mailto:kit28.24bee056@gmail.com">kit28.24bee056@gmail.com</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-val"><a href="tel:+918825500642">+91 88255 00642</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💼</div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val"><a href="https://linkedin.com/in/tamilvelmugunthan" target="_blank">tamilvelmugunthan</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🐙</div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-val"><a href="https://github.com/tamil2407" target="_blank">tamil2407</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🏆</div>
+        <div class="contact-label">LeetCode</div>
+        <div class="contact-val"><a href="https://leetcode.com/tamil24" target="_blank">tamil24</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">⭐</div>
+        <div class="contact-label">CodeChef</div>
+        <div class="contact-val"><a href="https://codechef.com/users/tamil24" target="_blank">tamil24</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & built by <span style="color:var(--accent)">Tamilvel Mugunthan S</span> · 2026</p>
+  <p style="margin-top:.4rem">Made with ❤️ for GitHub Pages · <a href="https://github.com/tamil2407">tamil2407</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
