@@ -133,6 +133,13 @@
     .coding-card .stat-row { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); padding: .2rem 0; border-bottom: 1px solid var(--border); }
     .coding-card .stat-row:last-child { border-bottom: none; }
     .coding-card .stat-row .val { color: var(--accent); font-family: var(--mono); font-weight: 600; }
+    .publications-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 1.25rem 1.5rem; transition: border-left-color .2s; }
+    .pub-card:hover { border-left-color: var(--accent); }
+    .pub-title { font-family: var(--mono); font-size: .92rem; font-weight: 700; color: var(--heading); margin-bottom: .5rem; line-height: 1.4; }
+    .pub-meta { font-size: .82rem; color: var(--muted); margin-bottom: .3rem; }
+    .pub-meta strong { color: var(--text); font-weight: 500; }
+    .pub-link { display: inline-block; margin-top: .6rem; font-family: var(--mono); font-size: .78rem; }
     .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
     .cert-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .9rem 1.1rem; display: flex; align-items: flex-start; gap: .75rem; }
     .cert-icon { font-size: 1rem; margin-top: .1rem; flex-shrink: 0; }
@@ -165,6 +172,7 @@
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
+    <a href="#publications">Publications</a>
     <a href="#skills">Skills</a>
     <a href="#coding">Coding</a>
     <a href="#contact">Contact</a>
@@ -297,10 +305,10 @@
     <div class="projects-grid">
       <div class="proj-card">
         <div class="proj-top"><div class="proj-icon">🔒</div><div class="proj-date">In Progress</div></div>
-        <div class="proj-name">CipherZenith</div>
-        <div class="proj-desc">Quantum-resilient payment security framework built as Cryptography Engineer on a 4-person student team (ByteStorm Crew). Core hybrid cryptography module built and tested in Python using liboqs-python for post-quantum key exchange and signatures.</div>
+        <div class="proj-name">CipherZenith — Peak Security for a Quantum Future</div>
+        <div class="proj-desc">Quantum-resilient payment security framework built as Cryptography Engineer on a 4-person student team (ByteStorm Crew). Core hybrid cryptography module built and tested in Python using liboqs-python for post-quantum key exchange and signatures. 🏆 Selected for the Grand Finale of IEEE YESIST12 (Track: IEngage, SDG 9 — Industry, Innovation and Infrastructure).</div>
         <div class="proj-tags">
-          <span class="tag cyan">Python</span><span class="tag purple">Post-Quantum Crypto</span><span class="tag green">liboqs</span><span class="tag orange">WSL2 Ubuntu</span>
+          <span class="tag cyan">Python</span><span class="tag purple">Post-Quantum Crypto</span><span class="tag green">liboqs</span><span class="tag orange">IEEE YESIST12</span>
         </div>
       </div>
       <div class="proj-card">
@@ -464,6 +472,22 @@
   </div>
 </section>
 
+<section id="publications">
+  <div class="reveal">
+    <div class="section-label">// research</div>
+    <h2>Publications</h2>
+    <div class="publications-list">
+      <div class="pub-card">
+        <div class="pub-title">FORGESENSE: Low-Cost Machine-Level Energy and Cooling Monitoring System for Metal Processing Industries</div>
+        <div class="pub-meta"><strong>Conference:</strong> International Conference on Circuit, Power and Computing Technologies (ICCPCT) 2026</div>
+        <div class="pub-meta"><strong>Co-authors:</strong> M P Mohandass · S Tamilvel Mugunthan · R Sai Thejas · V Anish</div>
+        <div class="pub-meta"><strong>Published:</strong> 21 August 2026 &nbsp;|&nbsp; <strong>DOI:</strong> 10.1109/ICCPCT70290.2026.11654811</div>
+        <a class="pub-link" href="https://ieeexplore.ieee.org/document/11654811" target="_blank">View on IEEE Xplore ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="certifications">
   <div class="reveal">
     <div class="section-label">// credentials</div>
@@ -489,6 +513,8 @@
     <div class="section-label">// wins & recognition</div>
     <h2>Achievements</h2>
     <div class="achievements-list">
+      <div class="ach-item">🏆 <strong>Grand Finale Selection — IEEE YESIST12</strong> (Track: IEngage, SDG 9 – Industry, Innovation and Infrastructure): Selected among shortlisted teams for the Grand Finale with CipherZenith — Peak Security for a Quantum Future, a quantum-resilient cybersecurity framework integrating Post-Quantum Cryptography, AI-driven threat detection, crypto-agility, and self-healing security. Role: Cryptography Engineer, Team ByteStorm Crew.</div>
+      <div class="ach-item">📄 <strong>IEEE Xplore Publication</strong> — Co-authored "FORGESENSE: Low-Cost Machine-Level Energy and Cooling Monitoring System for Metal Processing Industries", presented at ICCPCT 2026.</div>
       <div class="ach-item">🏆 <strong>1st Place — SMARTATHON 2.0</strong> (Blockchain & Cyber Security domain) for developing an HQ-Controlled Secure Communication Platform for Defence.</div>
       <div class="ach-item">🌍 <strong>International Hackathon</strong> — AIESEC UAE × De Montfort University: Collaborated in a multicultural team to pitch innovative solutions to real-world challenges.</div>
       <div class="ach-item">🇮🇳 <strong>Smart India Hackathon 2025</strong> — Selected in the Inter College Hackathon for Problem ID: SIH25085.</div>
